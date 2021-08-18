@@ -7,45 +7,54 @@ export default class Nav extends Component{
         this.props.setUser(null);
     }
 
-    render() {
-        let buttons;
-        if(this.props.user) {
-            buttons = (            
-                <ul className="navbar-nav ml-auto">
+    showLoggedInTabs =(user)=>{
+        if (user) {
+            return <>
+            <li className="nav-item">
+                <Link className="nav-link" to={'/'} onClick={this.handleLogout}>Logout</Link>
+            </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={'/'} onClick={this.handleLogout}>Logout</Link>
-                </li>
-              </ul>
-              )
-
-        } else{
-            buttons = (            
-            <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to={'/login'}>Login</Link>
+                <Link className="nav-link" to={'/Personal'}>My Routines</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={'/register'}>Sign Up</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={'/Routines'}>Routines</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={'/Activities'}>Activities</Link>
-            </li>
-          </ul>
-          )
+            </>
         }
+    }
+
+    showLoggedOutTabs =  user => {
+        if (!user) {
+            return <>
+                <li className="nav-item">
+                    <Link className="nav-link" to={'/login'}>Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to={'/register'}>Sign Up</Link>
+                </li>
+                
+            </>
+        }
+    }
+    render() {
 
         return (
             <nav className="navbar navbar-expand navbar-light fixed-top">
-        <div className="container">
-          <Link className="navbar-brand" to={'/'}>Home</Link>
-          <div className="collapse navbar-collapse">
-              {buttons}
-          </div>
-        </div>
-      </nav>
+                <div className="container">
+                    <Link className="navbar-brand" to={'/'}>Home</Link>
+                    <div className="collapse navbar-collapse">
+                        
+                        <ul className="navbar-nav ml-auto">
+                            {this.showLoggedInTabs(this.props.user)}
+                            {this.showLoggedOutTabs(this.props.user)}
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/Routines'}>Routines</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/Activities'}>Activities</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         )
     }
 }

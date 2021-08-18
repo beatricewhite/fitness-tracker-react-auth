@@ -5,7 +5,17 @@ import App from './App';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://fitnesstrac-kr.herokuapp.com/api';
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+
+export const getHeaders = () => {
+  const token = localStorage.getItem('token')
+  if(token) {
+    return {'Authorization':`Bearer ` + token};
+  } else {
+    return undefined
+  }
+}
+
+
 
 ReactDOM.render(
   <React.StrictMode>

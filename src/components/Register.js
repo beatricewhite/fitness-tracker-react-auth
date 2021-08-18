@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+// import validate from './validateInfo'
 
 export default class Register extends Component{
-
     handleSubmit= e => {
         e.preventDefault();
         const data = {

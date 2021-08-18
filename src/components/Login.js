@@ -3,7 +3,14 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 
 export default class Login extends Component{
-    state = {};
+    state = {
+        username: '',
+        password: '',
+        formErrors: {
+            username: '',
+            password: ''
+        }
+    }
 
     handleSubmit= e => {
         e.preventDefault();
@@ -12,11 +19,12 @@ export default class Login extends Component{
             password: this.password
         };
 
-        axios.post('https://fitnesstrac-kr.herokuapp.com/api/users/login', data)
+        axios.post('/users/login', data)
         .then(
             res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token);
+                localStorage.setItem('username', data.username);
                 this.setState({
                     loggedIn: true
                 });
