@@ -141,9 +141,6 @@ export default class Personal extends Component {
           <td>{activity.description}</td>
           <td>{activity.duration}</td>
           <td>
-            <button className="btn btn-primary btn-sm">Edit</button>
-          </td>
-          <td>
             <button
               onClick={() => this.removeRoutineActivity(activity.id)}
               className="btn btn-primary btn-sm"
@@ -207,6 +204,7 @@ export default class Personal extends Component {
             return routine
         })
     }}))
+
   };
 
   setCount = (new_count) => {
