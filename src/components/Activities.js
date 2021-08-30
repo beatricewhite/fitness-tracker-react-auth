@@ -16,15 +16,6 @@ export default class Activities extends Component{
           ({ data }) => this.setState({ activities: data },
             err => console.log(err))
         )
-        // if (!this.props.addtoRoutine){
-
-        // }
-        // else {
-        //     await axios.get(`routines/${this.props.selected_routine_id}/activities`).then(
-        //         ({ data }) => this.setState({ activities: data },
-        //           err => console.log(err))
-        //       )
-        // }
       }
 
 

@@ -65,15 +65,6 @@ export default class Personal extends Component {
       .catch((err) => console.log(err));
   };
 
-  showEditRoutine = (can_show) => {
-    this.setState({ canShowEditRoutine: can_show});
-  };
-  shouldShowEditRoutine = (can_show) => {
-    if (this.state.canShowEditRoutine) {
-      return <EditRoutine></EditRoutine>;
-    }
-  };
-
   removeRoutineActivity = (id) => {
     axios
       .delete(`/routine_activities/${this.state.selected_routine_id}` + id, {
@@ -192,7 +183,6 @@ export default class Personal extends Component {
 
   addtoRoutine = async (activity_id, count, duration) => {
     let url = `routines/${this.state.selected_routine_id}/activities`;
-    let username = localStorage.getItem("username");
     axios.post(
       url,
       {
@@ -217,19 +207,6 @@ export default class Personal extends Component {
             return routine
         })
     }}))
-
-    // //get all the routines
-    // await axios
-    //   .get(`users/${username}/routines`, { headers: getHeaders() })
-    //   .then((res) => {
-    //     //filter for the selected routine
-    //     let [routine] = res.data.filter(
-    //       (routine) => (routine.id = this.state.selected_routine_id)
-    //     );
-
-    //     // update routineActivites state
-    //     this.setState({ routineActivities: routine.activities });
-    //   });
   };
 
   setCount = (new_count) => {
