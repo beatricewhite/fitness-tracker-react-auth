@@ -12,6 +12,7 @@ import Routines from './components/Routines';
 import Activities from './components/Activities';
 import Personal from './components/Personal'
 import { getHeaders } from './index'
+import EditRoutine from './components/EditRoutine';
 
 export default class App extends Component {
 
@@ -58,6 +59,7 @@ export default class App extends Component {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/routines" component={() => <Routines routines={this.state.routines}></Routines>} />
                 <Route exact path="/activities" component={() => <Activities></Activities>}/>
+                <Route exact path="/EditRoutine" component={() => <EditRoutine></EditRoutine>}/>
                 <Route exact path="/Personal" component={() => <Personal></Personal>}/>
               </Switch>
             </div>

@@ -21,6 +21,7 @@ export default class AddActivity extends Component {
         }, () => {
             console.log('activity created')
             // this.clear();
+            this.setState({name: '',description: ''})
         }, err => console.log(err))
     }
 
@@ -29,6 +30,14 @@ export default class AddActivity extends Component {
 
         let { name, description } = this.state
         this.add({ name, description })
+
+        const newState = {
+            name: "",
+            description: "",
+          };
+          this.setState(newState, () => {
+            console.log("Set state was called");
+          });
     }
 
     render(){

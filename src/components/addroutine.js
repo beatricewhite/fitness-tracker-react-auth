@@ -12,17 +12,24 @@ export default class AddRoutine extends Component {
 
     }
 
-    clear = () => {
-        //reset state
-        this.setState({name: '',goal: '',isPublic: false})
-    }
+    // clear = () => {
+    //     //reset state
+    //     this.state({name: '',goal: '',isPublic: false})
+    // }
 
     handleSubmit = (event) => {
-        event.preventDefault()
-
+        event.preventDefault();
         let { name, goal, isPublic } = this.state
-        this.add({ name, goal, isPublic })
-        
+        this.add(this.state);
+        // window.location.reload(false);
+        const newState = {
+            name: "",
+            goal: "",
+            isPublic: false
+          };
+          this.setState(newState, () => {
+            console.log("Set state was called");
+          });
     }
 
     add = (data) => {

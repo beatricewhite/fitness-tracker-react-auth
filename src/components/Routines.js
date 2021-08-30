@@ -10,7 +10,6 @@ export default class Routines extends Component {
         routines: []
     }
 
-
     componentDidMount() {
         this.fetchRoutines()
     }
@@ -25,25 +24,6 @@ export default class Routines extends Component {
             ({ data }) => this.setState({ routines: data },
                 err => console.log(err))
         )
-    }
-
-
-    removeRoutine = (id) => {
-        axios.delete('/routines/' + id,{headers: getHeaders()})
-        .then(() => {
-            this.setState({ routines: this.state.routines.filter(routine => routine.id !== id) })
-        })
-        .catch(err => console.log(err))
-
-    }
-
-    removeRoutineActivity = (id) => {
-        axios.delete('/routine_activities/:routineActivityId' + id,{headers: getHeaders()})
-        .then(() => {
-            this.setState({ selectedActivities: this.state.selectedActivities.filter(activity => activity.id !== id) })
-        })
-        .catch(err => console.log(err))
-
     }
 
     editRoutine = (id) => {
@@ -69,7 +49,6 @@ export default class Routines extends Component {
                 <td>{routine.goal}</td>
                 <td><button className="btn btn-primary" onClick={() => this.setSelectedActivities(routine.activities)}>{routine.activities.length}</button></td>
                 <td>{routine.creatorName}</td>
-                <td><button onClick={() => this.removeRoutine(routine.id)} className="btn btn-primary btn-sm">Delete</button> </td>
             </tr>
         })
     }

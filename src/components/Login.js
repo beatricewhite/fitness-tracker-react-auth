@@ -8,7 +8,8 @@ export default class Login extends Component{
         password: '',
         formErrors: {
             username: '',
-            password: ''
+            password: '',
+        errorMessages: []
         }
     }
 
@@ -32,7 +33,9 @@ export default class Login extends Component{
             }
         ).catch(
             err => {
-                console.log(err);
+                this.setState({
+                    message: err.response.data.message
+                })
             }
         )
     };
@@ -41,8 +44,20 @@ export default class Login extends Component{
         if(this.state.loggedIn) {
             return <Redirect to={'/'} />;
         }
+
+        let error = '';
+        if (this.state.message) {
+            error = (
+                <div className="aler alert-danger" role="alert">
+                    {this.state.message}
+                </div>
+            )
+        }
+
+        
         return (
             <form onSubmit={this.handleSubmit}>
+            {error}
             <h3>Login</h3>
 
             <div className="form-group">
